@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "./RecipeSearch.css";
 
 export default class Home extends Component {
     constructor(){
@@ -8,7 +9,10 @@ export default class Home extends Component {
     render() {
         return(
           <div>
-              <h1> Backround Image</h1>
+              <div className="head-img">
+
+
+              </div>
 
           </div>
         )

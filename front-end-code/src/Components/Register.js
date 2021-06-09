@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import "./Header/RecipeSearch.css";
+
 
 
 
@@ -6,30 +11,66 @@ import React, { Component } from 'react'
 export default class Register extends Component {
     constructor(props){
         super(props)
+        this.state = {
+          username : "",
+          email: "",
+          password : "",
+        }
       }
-      
+
+      loginChange = (event) => {
+
+           this.setState({
+               [event.target.name]: event.target.value
+           })
+           console.log(this.state)
+       }
+       handleSubmit = (event) => {
+         event.preventDefault();
+         console.log(this.state)
+         console.log("immmmmm hit")
+
+         this.props.register(this.state.username, this.state.email, this.state.password);
+        }
+
 
 
     render() {
-      console.log(this.props)
+      console.log(this.handleSubmit)
+      console.log(this.state.email)
       console.log("-----------------------")
         return(
             <>
 
-              <form onSubmit={this.props.register} >
-                <label htmlFor="username" >Username</label>
+            <div className="form-box-lr">
+              <Form className="lr-form" onSubmit={this.handleSubmit}>
+                <Form.Group controlId="formBasicSearch" className="smaller-input">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="text" placeholder="Username" name="username" id="usernme" className="form-text" onChange={(event)=> this.loginChange(event)} value={this.state.username}/>
+                </Form.Group>
 
-                <input onChange={(event)=> this.props.logInChange(event)} type="text" name="username" id="username" value={this.props.username}></input>
+                <Form.Group controlId="formBasicSearch" className="smaller-input">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="text" placeholder="Email" name="email" id="email" className="form-text" onChange={(event)=> this.loginChange(event)} value={this.state.email}/>
+                </Form.Group>
 
-                <label htmlFor="email">Email</label>
-                <input onChange={(event)=> this.props.logInChange(event)} type="text" name="email" id="email" value={this.props.email}></input>
+                <Form.Group controlId="formBasicSearch" className="smaller-input">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="text" name="password" id="password" placeholder="Password" className="form-text" onChange={(event)=> this.loginChange(event)} value={this.state.password}/>
+                </Form.Group>
 
-                <label htmlFor="password"> Password</label>
-                <input onChange={(event)=> this.props.logInChange(event)} type="text" name="password" id="password" value={this.props.password}></input>
+                <Button variant="success" type="submit" className="regis-button">
+                  Register
+                </Button>
 
-                <input type="submit"></input>
 
-              </form>
+              </Form>
+
+              <Link to="/users/login" className="to-login">
+                Alreday have an accout? Log In
+              </Link>
+
+            </div>
 
 
             </>
@@ -38,10 +79,3 @@ export default class Register extends Component {
       }
 
 }
-
-
-// whoWillCleanTheKitchenTonight =["Marcus", "Marlene", "Garl"];
-//
-// const clenUp = Math.floor(Math.random()*whoWillCleanTheKitchenTonight.length);
-//
-// console.log(clenUp)
