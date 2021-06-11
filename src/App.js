@@ -37,6 +37,8 @@ if (process.env.NODE_ENV === 'development') {
 
 console.log('current base URL:', baseURL)
 
+
+
 export default class App extends Component {
 
   constructor(props){
