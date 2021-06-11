@@ -34,6 +34,8 @@ if (process.env.NODE_ENV === 'development') {
   baseURL = process.env.REACT_APP_BASEURL
 }
 
+
+
 console.log('current base URL:', baseURL)
 
 
