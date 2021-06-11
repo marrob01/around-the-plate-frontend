@@ -15,8 +15,8 @@ import "./Header/RecipeSearch.css";
 
 export default class Create extends Component {
 
-  constructor(){
-      super()
+  constructor(props){
+      super(props)
       this.state ={
         userRecipes : [],
         ModalOpen: false,
@@ -37,7 +37,7 @@ export default class Create extends Component {
           })
           console.log(body)
 
-          const response = await fetch('http://localhost:8000/api/v1/recipes/ ' +this.state.iDoFrecipeToBeEdited.id , {
+          const response = await fetch( this.props.baseURL +'/api/v1/recipes/ ' +this.state.iDoFrecipeToBeEdited.id , {
             method: 'PUT',
             credentials: 'include',
 
@@ -85,7 +85,7 @@ export default class Create extends Component {
     getUserRecipes = async (id) => {
 
     try{
-      const response = await fetch('http://localhost:8000/api/v1/recipes/user_recipe', {method: "GET", credentials: 'include'})
+      const response = await fetch(this.props.baseURL +'/api/v1/recipes/user_recipe', {method: "GET", credentials: 'include'})
       const userRecipes = await response.json()
       console.log(userRecipes)
       if(response.status === 200 || response.status === 201 ){
@@ -121,7 +121,7 @@ export default class Create extends Component {
 
     console.log(body)
 
-      const response = await fetch('http://localhost:8000/api/v1/recipes/ ', {
+      const response = await fetch(this.props.baseURL +'/api/v1/recipes/ ', {
         credentials: 'include',
         method: "POST",
         headers: {
@@ -162,7 +162,7 @@ export default class Create extends Component {
   deleteRecipe = async (id) => {
 
     try{
-      const response = await fetch( 'http://localhost:8000/api/v1/recipes/' + id, {
+      const response = await fetch( this.props.baseURL +'/api/v1/recipes/' + id, {
         method: 'DELETE',
         credentials: "include"
       })

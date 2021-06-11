@@ -26,7 +26,13 @@ import "./Components/Header/RecipeSearch.css";
 import Footer from "./Components/Footer.js"
 
 
-let baseURL= process.env.REACT_APP_BASEURL
+let baseURL;
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:8000';
+} else {
+  baseURL = process.env.REACT_APP_BASEURL
+}
 
 console.log('current base URL:', baseURL)
 
@@ -58,7 +64,7 @@ export default class App extends Component {
 
     console.log(body)
 
-      const response = await fetch('http://localhost:8000/api/v1/users/register ', {
+      const response = await fetch(baseURL +'/api/v1/users/register ', {
         credentials: 'include',
         method: "POST",
         headers: {
@@ -92,7 +98,7 @@ export default class App extends Component {
 
       console.log(body)
 
-        const response = await fetch('http://localhost:8000/api/v1/users/login ', {
+        const response = await fetch(baseURL+ '/api/v1/users/login ', {
           credentials: 'include',
           method: "POST",
           headers: {
@@ -116,7 +122,7 @@ export default class App extends Component {
 
 
     logoutUser = async () => {
-      const url = 'http://localhost:8000/api/v1/users/logout'
+      const url = baseURL+ '/api/v1/users/logout'
         try {
           const response = await fetch(url, {
           method: 'GET',
@@ -154,8 +160,12 @@ export default class App extends Component {
           <Switch>
 
               <Route path="/" exact component={Home} />
-              <Route path="/your_recipe" exact component={Create} />
-              <Route path="/view_recipe" exact  component={View} />
+              <Route path="/your_recipe" exact component={() => <Create  baseURL={baseURL}/>}
+
+              />
+              <Route path="/view_recipe" exact component={() => <View  baseURL={baseURL}/>}
+
+              />
               <Route path="/favorites"  exact component={Favorites} />
               <Route path="/users/register"  exact component={() => <Register
                  register={this.register}  />}

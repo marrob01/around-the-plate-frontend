@@ -24,7 +24,7 @@ export default class App extends Component {
     getAllRecipes = async (id) => {
 
     try{
-      const response = await fetch('http://localhost:8000/api/v1/recipes/all_recipes', {method: "GET", credentials: 'include'})
+      const response = await fetch(this.props.baseURL + '/api/v1/recipes/all_recipes', {method: "GET", credentials: 'include'})
       const allRecipes = await response.json()
       console.log(allRecipes)
       if(response.status === 200 || response.status === 201 ){
