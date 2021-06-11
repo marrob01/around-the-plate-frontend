@@ -26,7 +26,16 @@ import "./Components/Header/RecipeSearch.css";
 import Footer from "./Components/Footer.js"
 
 
+let baseURL;
 
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3000';
+} else {
+  // "https://fathomless-sierra-68956.herokuapp.com" in this case is the *API* url
+  baseURL = 'https://around-the-plate.herokuapp.com';
+}
+
+console.log('current base URL:', baseURL)
 
 export default class App extends Component {
 
@@ -165,7 +174,7 @@ export default class App extends Component {
 
 
         </BrowserRouter>
-    
+
 
       </div>
     );
