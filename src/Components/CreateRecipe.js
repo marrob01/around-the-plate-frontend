@@ -9,7 +9,13 @@ import {ReactComponent as Table} from "./images/svg-4.svg"
 import "./Header/RecipeSearch.css";
 
 
+let baseURL;
 
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:8000';
+} else {
+  baseURL = process.env.REACT_APP_BASEURL
+}
 
 
 
@@ -121,7 +127,7 @@ export default class Create extends Component {
 
     console.log(body)
 
-      const response = await fetch(this.props.baseURL +'/api/v1/recipes/ ', {
+      const response = await fetch(this.props.baseURL +'/api/v1/recipes ', {
         credentials: 'include',
         method: "POST",
         headers: {

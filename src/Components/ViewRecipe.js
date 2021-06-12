@@ -5,7 +5,13 @@ import Button from 'react-bootstrap/Button'
 import { Icon } from 'semantic-ui-react'
 import "./Header/RecipeSearch.css";
 
+let baseURL;
 
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:8000';
+} else {
+  baseURL = process.env.REACT_APP_BASEURL
+}
 
 export default class App extends Component {
 
@@ -68,7 +74,7 @@ export default class App extends Component {
 
       likeRecipe = async (id) => {
 
-          const url = 'http://localhost:8000/api/v1/recipes/' + this.state.recipeToBeLiked.id + '/like'
+          const url = baseURL + '/api/v1/recipes/' + this.state.recipeToBeLiked.id + '/like'
           const response = await fetch(url, {method: "POST", credentials: 'include'})
           const likedRecipe = await response.json();
           console.log(url)
@@ -77,6 +83,7 @@ export default class App extends Component {
 
 
       }
+
 
   render() {
     console.log(this.state.allRecipes)
