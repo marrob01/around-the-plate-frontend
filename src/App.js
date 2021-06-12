@@ -69,6 +69,8 @@ export default class App extends Component {
       const response = await fetch(baseURL +'/api/v1/users/register ', {
         credentials: 'include',
         method: "POST",
+
+
         headers: {
           'Content-Type': 'application/json',
         },

@@ -44,7 +44,7 @@ export default class Register extends Component {
 
             <div className="form-box-lr">
               <Form className="lr-form" onSubmit={this.handleSubmit}>
-                <Form.Group controlId="formBasicSearch" className="smaller-input">
+                <Form.Group  className="smaller-input">
                   <Form.Label>Username</Form.Label>
                   <Form.Control type="text" placeholder="Username" name="username" id="usernme" className="form-text" onChange={(event)=> this.loginChange(event)} value={this.state.username}/>
                 </Form.Group>

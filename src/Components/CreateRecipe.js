@@ -127,7 +127,7 @@ export default class Create extends Component {
 
     console.log(body)
 
-      const response = await fetch(this.props.baseURL +'/api/v1/recipes ', {
+      const response = await fetch(this.props.baseURL+'/api/v1/recipes/', {
         credentials: 'include',
         method: "POST",
         headers: {
